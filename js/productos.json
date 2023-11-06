@@ -1,0 +1,232 @@
+[
+
+    {
+        "id":1,
+        "titulo":"Collar Cruz de Plata",
+        "imagen":"../assets/img/collares/collarPlataCruz.jpg",
+        "categoria":{
+            "nombre":"collares",
+            "id":"collares"
+            },
+        "precio":2500
+    },
+    {
+        "id":2,
+        "titulo":"Collar Doble Aro",
+        "imagen":"../assets/img/collares/collarDobleAro.jpg",
+        "categoria":{
+            "nombre":"collares",
+            "id":"collares"
+            },
+        "precio":2500
+    },
+    {
+        "id":3,
+        "titulo":"Collar Perla de Oro",
+        "imagen":"../assets/img/collares/collarOroPerla.jpg",
+        "categoria":{
+            "nombre":"collares",
+            "id":"collares"
+            },
+        "precio":2500
+    },
+    {
+        "id":4,
+        "titulo":"Collar Perlas",
+        "imagen":"../assets/img/collares/collarPerlas.jpg",
+        "categoria":{
+            "nombre":"collares",
+            "id":"collares"
+            },
+        "precio":2500
+    },
+    {
+        "id":5,
+        "titulo":"Collar Triple de Plata",
+        "imagen":"../assets/img/collares/collarPlatatriple.jpg",
+        "categoria":{
+            "nombre":"collares",
+            "id":"collares"
+            },
+        "precio":2500
+    },
+    {
+        "id":6,
+        "titulo":"Pulsera Galapagos",
+        "imagen":"../assets/img/pulseras/pulseraGalapagosPlata.jpeg",
+        "categoria":{
+            "nombre":"pulseras",
+            "id":"pulseras"
+            },
+        "precio":2500
+    },
+    {
+        "id":7,
+        "titulo":"Pulsera Oslo",
+        "imagen":"../assets/img/pulseras/pulseraOslo.jpeg",
+        "categoria":{
+            "nombre":"pulseras",
+            "id":"pulseras"
+            },
+        "precio":2500
+    },
+    {
+        "id":8,
+        "titulo":"Pulsera Soho de Plata",
+        "imagen":"../assets/img/pulseras/pulseraSohoPlata.jpeg",
+        "categoria":{
+            "nombre":"pulseras",
+            "id":"pulseras"
+            },
+        "precio":2500
+    },{
+        "id":9,
+        "titulo":"Pulsera Tarragona",
+        "imagen":"../assets/img/pulseras/pulseraTarragona.jpeg",
+        "categoria":{
+            "nombre":"pulseras",
+            "id":"pulseras"},
+        "precio":2500
+    },
+    {
+        "id":10,
+        "titulo":"Anillo Banda Miebius",
+        "imagen":"../assets/img/anillos/anilloBandaMiebius.jpg",
+        "categoria":{
+            "nombre":"anillos",
+            "id":"anillos"
+            },
+        "precio":2500
+    },
+    {
+        "id":11,
+        "titulo":"Anillo Corona Rosa",
+        "imagen":"../assets/img/anillos/anilloCoronaRosa.jpg",
+        "categoria":{
+            "nombre":"anillos",
+            "id":"anillos"
+            },
+        "precio":2500
+    
+    },
+    {
+        "id":12,
+        "titulo":"Anillo Hoja",
+        "imagen":"../assets/img/anillos/anilloHoja.jpg",
+        "categoria":{
+        "nombre":"anillos",
+        "id":"anillos"
+            },
+        "precio":2500
+    },
+    {
+        "id":13,
+        "titulo":"Anillo Malaga",
+        "imagen":"../assets/img/anillos/anilloMalaga.jpeg",
+        "categoria":{
+            "nombre":"anillos",
+            "id":"anillos"
+            },
+        "precio":2500
+    },
+    {
+        "id":14,
+        "titulo":"Anillo Sydeny",
+        "imagen":"../assets/img/anillos/anilloSydney.jpeg",
+        "categoria":{
+            "nombre":"anillos",
+            "id":"anillos"
+            },
+        "precio":2500
+    },
+    {
+        "id":15,
+        "titulo":"Anillo Sydeny de Plata",
+        "imagen":"../assets/img/anillos/anilloSydneyPlata.jpeg",
+        "categoria":{
+            "nombre":"anillos",
+            "id":"anillos"
+            },
+        "precio":2500
+    },
+    {
+        "id":16,
+        "titulo":"Billetera de cuero Azul",
+        "imagen":"../assets/img/carteras/billetera-azul.webp",
+        "categoria":{
+            "nombre":"carteras",
+            "id":"carteras"
+            },
+        "precio":2500
+    },
+    {
+        "id":17,
+        "titulo":"Billetera de cuero Rosa",
+        "imagen":"../assets/img/carteras/billetera-rosa.jpg",
+        "categoria":{
+            "nombre":"carteras",
+            "id":"carteras"
+            },
+        "precio":2500
+    },
+    {
+        "id":18,
+        "titulo":"Juego de Bolso y Cartera",
+        "imagen":"../assets/img/carteras/bolso-cartera-rayas.jpg",
+        "categoria":{
+            "nombre":"carteras",
+            "id":"carteras"
+            },
+        "precio":2500
+    },
+    {
+        "id":19,
+        "titulo":"Bolso de cuero Negro",
+        "imagen":"../assets/img/carteras/bolso-cuero-negro.png",
+        "categoria":{
+            "nombre":"carteras",
+            "id":"carteras"
+            },
+        "precio":2500
+    },
+    {
+        "id":20,
+        "titulo":"Billetera de cuero Rosa",
+        "imagen":"../assets/img/carteras/cartera-cuero-rosa.jpg",
+        "categoria":{
+            "nombre":"carteras",
+            "id":"carteras"
+            },
+        "precio":2500
+    },
+    {
+        "id":21,
+        "titulo":"Cinturon Amanda",
+        "imagen":"../assets/img/cinturones/cinturon-amarillo.jpg",
+        "categoria":{
+            "nombre":"cinturones",
+            "id":"cinturones"
+            },
+        "precio":2500
+    },
+    {
+        "id":22,
+        "titulo":"Cinturon Bianca",
+        "imagen":"../assets/img/cinturones/cinturon-blanco.jpg",
+        "categoria":{
+            "nombre":"cinturones",
+            "id":"cinturones"
+            },
+        "precio":2500
+    },
+    {
+        "id":23,
+        "titulo":"Cinturon Nina",
+        "imagen":"../assets/img/cinturones/cinturon-negro.jpg",
+        "categoria":{
+            "nombre":"cinturones",
+            "id":"cinturones"
+            },
+        "precio":2500
+    }
+    ]
