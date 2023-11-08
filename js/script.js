@@ -1,8 +1,6 @@
-//CREO ARRAY Y OBJETO DE PRODUCTOS
-
 async function obtenerProductos() {
     try {
-        const response = await fetch('../js/productos.json');
+        const response = await fetch("https://raw.githubusercontent.com/DuvanAndrade/aurora_TP_Final_Js/main/js/productos.json");
         if (!response.ok) {
             throw new Error(`Error al cargar el archivo JSON. Status: ${response.status}`);
         }
@@ -14,17 +12,6 @@ async function obtenerProductos() {
 }
 
 
-fetch('js/productos.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error al obtener los datos')
-        }
-
-        return response.json()
-    })
-    .then(data => console.log(data));
-
-  
 //BOTON ENVIAR EMAIL FOOTER 
 const btnEmail = document.getElementById("emailForm");
 btnEmail.addEventListener("submit", function(e) {
@@ -92,8 +79,6 @@ img.onload = function() {
   myDiv.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.100), rgba(0, 0, 0, 0.400)), url(${img.src})`;
 };
 img.src = 'assets/img/imgprincipal.jpg';
-
-//CARRUSEL
 
 
 //PAG CONTACTO
@@ -172,7 +157,6 @@ window.onclick = function(event) {
 document.addEventListener("DOMContentLoaded", function() {
     const formularioInicio = document.getElementById("formInicio");
     const formularioRegistro = document.getElementById("formRegistro");
-    const mensaje = document.getElementById("mensaje");
 
     // GUARDAR USUARIO EN EL LOCALST
     function guardarUsuario(usuario) {
@@ -265,7 +249,7 @@ function msnErrorCampo(){
         icon: "warning",
       });
 }
-function registroExitoso(nombre){
+function registroExitoso(){
     swal({
         title: "Bien Hecho",
         text: "Registro exitoso",
@@ -273,7 +257,30 @@ function registroExitoso(nombre){
       });
 }
 
+// const catalogo = document.getElementById('box_productos');
 
+// fetch('../js/productos.json')
+//     .then(res=> res.json())
+//     .then(data =>{
+//         data.forEach(producto =>{
+//            const div = document.createElement('div');
+//            div.className = "producto"
+//             //SE CREA UN DIV CON LOS ELEMNTOS DEL PRODCUTO A MOSTRAR
+//             let img = document.createElement("img");
+//             img.src = producto.imagen;
+//             div.appendChild(img) 
+//             let titulo =  document.createElement("h2")     
+//             titulo.textContent = producto.titulo;    
+//             div.appendChild(titulo);
+//             let btns_agregar = document.createElement("button")
+//             btns_agregar.className = "btn_agragar";
+//             btns_agregar.textContent = "Agregar";
+//             div.appendChild(btns_agregar);
+
+//             catalogo.appendChild(div);
+
+//         })
+//     })
 
 //NUESTROS PRODUCTOS
 let btns_agregar = document.querySelectorAll('.agregar_producto');
@@ -336,10 +343,12 @@ function agregarAlCarrito(id){
 }
 
 
+
 function mostrarProcductosCarrito(){
-    localStorage.getItem(productosEnCarrito);
+
+    JSON.parse(localStorage.getItem('carrito'));
     if(productosEnCarrito && productosEnCarrito.length > 0){
-        productosEnCarrito.forEach(producto =>{
+        productosEnCarrito.forEach((producto) =>{
             const div = document.createElement("div");
             div.innerHTML = `
             <article  id=${producto.id} class="box">
@@ -354,3 +363,23 @@ function mostrarProcductosCarrito(){
         })
     }
 }
+mostrarProcductosCarrito()
+
+
+
+// const imagen = document.querySelector('.imagen');
+// const texto = document.querySelector(".texto");
+// function irATienda(imagen) {
+//     // Añade un texto de "Ir a la tienda" al elemento cuando el puntero del mouse entra en él
+//     imagen.addEventListener("mouseenter", function() {
+//     texto.textContent = "Ir a la tienda";
+//     });
+  
+//     // Redirige a la página de la tienda cuando se hace clic en el elemento
+//     imagen.addEventListener("click", function() {
+//       window.location.href = "../pages/productos.html";
+//     });
+//   }
+
+
+

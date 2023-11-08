@@ -117,6 +117,26 @@
 .frase h2 {
     font-size: 3rem;
 }
+.masVendidos{
+    padding-top: 4rem;
+    padding-bottom:  4rem;
+}
+.masVendidos h2{
+    text-align: center;
+}
+
+.masVendidos_cards{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 3rem;
+    padding-bottom: 4rem;
+}
+.card-text{
+    color: black;
+    text-align: center;
+}
+
 .grilla_img img{
     overflow: hidden;
     object-fit: cover;
