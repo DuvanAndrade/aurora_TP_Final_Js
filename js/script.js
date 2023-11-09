@@ -12,31 +12,10 @@ async function obtenerProductos() {
 }
 
 
-//BOTON ENVIAR EMAIL FOOTER 
-const btnEmail = document.getElementById("emailForm");
-btnEmail.addEventListener("submit", function(e) {
-e.preventDefault();
-    const email = document.getElementById("emailInput").value;
-    const emailValido = validarEmail(email);
-
-    if (!emailValido) {
-        emailInvalido();
-    } else {
-       localStorage.setItem("user_email", email);
-        envioEmail();
-    } 
-    btnEmail.reset();
-    });
-    
-
-function validarEmail(email) {
-    const regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-    return regex.test(email);
-}
-
-function envioEmail(){
+//MENSAJES DE ENVIO
+function enviado(mensaje){
     Toastify({
-        text: "Email enviado con éxito.",
+        text: mensaje,
         duration: 3000,
         destination: "https://github.com/apvarun/toastify-js",
         newWindow: true,
@@ -66,6 +45,81 @@ function emailInvalido(){
       }).showToast();
 }
 
+function envioFormulario(msn){
+    Toastify({
+        text: msn,
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "var(--colorTitulo)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+  }
+
+function Bienvenido(nombre){
+    swal({
+        title: "Bienvenido",
+        text: `${nombre} 😊`,
+        icon: "success",
+      });
+}
+function msnErrorCampo(msn){
+    swal({
+        title: "Error 🙃",
+        text: msn,
+        icon: "error",
+      });
+}
+function msnErrorResgistro(){
+    swal({
+        title: "Error 🙃",
+        text: "El usuario ya existe. Por favor, elige otro nombre de usuario.",
+        icon: "error",
+      });
+}
+function msnAdvertencia(){
+    swal({
+        title: "👁️",
+        text: "El nombre de usuario y la contraseña deben tener al menos 6 caracteres.",
+        icon: "warning",
+      });
+}
+
+function registroExitoso(){
+    swal({
+        title: "Bien Hecho",
+        text: "Registro exitoso",
+        icon: "success",
+      });
+}
+
+//BOTON ENVIAR EMAIL FOOTER 
+const btnEmail = document.getElementById("emailForm");
+btnEmail.addEventListener("submit", function(e) {
+e.preventDefault();
+    const email = document.getElementById("emailInput").value;
+    const emailValido = validarEmail(email);
+
+    if (!emailValido) {
+        emailInvalido();
+    } else {
+       localStorage.setItem("user_email", email);
+        enviado('Email enviado exitosamente!');
+    } 
+    btnEmail.reset();
+    });
+    
+
+function validarEmail(email) {
+    const regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return regex.test(email);
+}
 
 //INDEX
 
@@ -93,46 +147,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const mensaje = formulario.mensaje.value;
   
       if (nombre === "" || apellido === "" || email === "" || mensaje === "") {
-        envioError();
+        envioFormulario("Por favor, completa todos los campos.");
         return;
       }
-      envioExitoso()
+      envioFormulario("Formulario enviado con éxito.")
       formulario.reset();
     });
   });
-
-
-  function envioExitoso(){
-    Toastify({
-        text: "Formulario enviado con éxito.",
-        duration: 3000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        close: true,
-        gravity: "top", // `top` or `bottom`
-        position: "left", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "var(--colorTitulo)",
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
-  }
-  function envioError(){
-    Toastify({
-        text: "Por favor, completa todos los campos.",
-        duration: 3000,
-        destination: "https://github.com/apvarun/toastify-js",
-        newWindow: true,
-        gravity: "top", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "var(--colorTitulo)",
-        },
-        onClick: function(){} // Callback after click
-      }).showToast();
-  }
 
 
 //NAVBAR
@@ -181,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (usuario) {
             Bienvenido(usuario.nombre);
         } else {
-            msnErrorLogin();
+            msnErrorCampo("Nombre o contraseña iconrrecta. Por favor, inténtalo de nuevo.");
         }
         formularioInicio.reset();
     });
@@ -193,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const registroPassword = document.getElementById("registroPassword").value;
 
         if (registroUsuario === "" || registroPassword === "") {
-            msnErrorCampo();
+            msnErrorCampo("Por favor, ingresa un nombre ó contraseña válida.");
         } else if (registroUsuario.length < 6 || registroPassword.length < 6) {
             msnAdvertencia();
         } else {
@@ -214,48 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function Bienvenido(nombre){
-    swal({
-        title: "Bienvenido",
-        text: `${nombre} 😊`,
-        icon: "success",
-      });
-}
-function msnErrorLogin(){
-    swal({
-        title: "Error 🙃",
-        text: "Nombre o contraseña iconrrecta. Por favor, inténtalo de nuevo.",
-        icon: "error",
-      });
-}
-function msnErrorResgistro(){
-    swal({
-        title: "Error 🙃",
-        text: "El usuario ya existe. Por favor, elige otro nombre de usuario.",
-        icon: "error",
-      });
-}
-function msnAdvertencia(){
-    swal({
-        title: "👁️",
-        text: "El nombre de usuario y la contraseña deben tener al menos 6 caracteres.",
-        icon: "warning",
-      });
-}
-function msnErrorCampo(){
-    swal({
-        title: "🙏🏻",
-        text: "Por favor, ingresa un nombre ó contraseña válida.",
-        icon: "warning",
-      });
-}
-function registroExitoso(){
-    swal({
-        title: "Bien Hecho",
-        text: "Registro exitoso",
-        icon: "success",
-      });
-}
+
 
 // const catalogo = document.getElementById('box_productos');
 
@@ -333,22 +313,25 @@ document.getElementById('cinturones').addEventListener('click', () => cargarProd
 cargarProductos('todos');
 
 //INICIALIZACION EL CARRITO VACIO
-const produCarrito = document.querySelector(".contenedor-carrito");
-const productosEnCarrito = [];
+
+let productosEnCarrito = [];
 
 function agregarAlCarrito(id){
     const productoAgregado = productos.find(producto => producto.id === id);
     productosEnCarrito.push(productoAgregado);
     localStorage.setItem('carrito', JSON.stringify(productosEnCarrito));
+    console.log(productosEnCarrito);
+    enviado('Producto Agregado Al Carrito');
 }
 
 
-
 function mostrarProcductosCarrito(){
-
-    JSON.parse(localStorage.getItem('carrito'));
-    if(productosEnCarrito && productosEnCarrito.length > 0){
-        productosEnCarrito.forEach((producto) =>{
+    const produCarrito = document.querySelector(".contenedor-carrito");
+    produCarrito.innerHTML = "Carrito Vacio";
+    const productosEnCarritoLS = JSON.parse(localStorage.getItem("carrito"));
+    console.log(productosEnCarritoLS)
+        
+        productosEnCarritoLS.forEach((producto) =>{
             const div = document.createElement("div");
             div.innerHTML = `
             <article  id=${producto.id} class="box">
@@ -361,25 +344,23 @@ function mostrarProcductosCarrito(){
             `;
             produCarrito.append(div);
         })
-    }
 }
 mostrarProcductosCarrito()
 
 
-
-// const imagen = document.querySelector('.imagen');
-// const texto = document.querySelector(".texto");
-// function irATienda(imagen) {
-//     // Añade un texto de "Ir a la tienda" al elemento cuando el puntero del mouse entra en él
-//     imagen.addEventListener("mouseenter", function() {
-//     texto.textContent = "Ir a la tienda";
-//     });
+const imagen = document.querySelector('.imagen');
+const texto = document.querySelector(".texto");
+function irATienda(imagen) {
+    // Añade un texto de "Ir a la tienda" al elemento cuando el puntero del mouse entra en él
+    imagen.addEventListener("mouseenter", function() {
+    texto.textContent = "Ir a la tienda";
+    });
   
-//     // Redirige a la página de la tienda cuando se hace clic en el elemento
-//     imagen.addEventListener("click", function() {
-//       window.location.href = "../pages/productos.html";
-//     });
-//   }
+    // Redirige a la página de la tienda cuando se hace clic en el elemento
+    imagen.addEventListener("click", function() {
+      window.location.href = "../pages/productos.html";
+    });
+  }
 
 
 
