@@ -174,6 +174,27 @@ window.onclick = function(event) {
 }
 
 
+document.addEventListener("DOMContentLoaded", function(){
+    const modalCart = document.getElementById("myModalCart");
+    const btnCart = document.getElementById("myBtnCart");
+    const span = document.getElementsByClassName("closeCart")[0];
+    btnCart.onclick = function() {
+    modalCart.style.display = "block";
+    }
+    span.onclick = function() {
+    modalCart.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modalCart) {
+        modalCart.style.display = "none";
+        }
+    }
+
+})
+
+
+
+
 //INICIO DE SECCION O REGISTRO DE UNA NUEVA CUENTA 
 document.addEventListener("DOMContentLoaded", function() {
     const formularioInicio = document.getElementById("formInicio");
@@ -312,55 +333,92 @@ document.getElementById('cinturones').addEventListener('click', () => cargarProd
 
 cargarProductos('todos');
 
-//INICIALIZACION EL CARRITO VACIO
-
-let productosEnCarrito = [];
+const productosEnCarrito = [];
 
 function agregarAlCarrito(id){
     const productoAgregado = productos.find(producto => producto.id === id);
     productosEnCarrito.push(productoAgregado);
     localStorage.setItem('carrito', JSON.stringify(productosEnCarrito));
-    console.log(productosEnCarrito);
     enviado('Producto Agregado Al Carrito');
 }
 
+function eliminarProducto(id) {
+    const productosEnCarritoLS = JSON.parse(localStorage.getItem("carrito"));
+    const carritoActualizado = productosEnCarritoLS.filter(producto => producto.id !== id);
+    localStorage.setItem('carrito', JSON.stringify(carritoActualizado));
+    limpiarCarrito();
+    mostrarProcductosCarrito();
+    
+    const totalCarrito = calcularTotalCarrito();
+    actualizarTotalCarrito(totalCarrito);
+    
+}
 
+function limpiarCarrito() {
+    const produCarrito = document.querySelector(".contenedor-carrito");
+    produCarrito.innerHTML = ''; 
+}
+//FUNCION PARA CALCULAR EL TOTAL DE LOS PRODCUTOS AGREGADOS
+function calcularTotalCarrito() {
+    const productosEnCarritoLS = JSON.parse(localStorage.getItem("carrito"));
+    let total = 0;
+
+    if (productosEnCarritoLS && productosEnCarritoLS.length > 0) {
+        total = productosEnCarritoLS.reduce((acumulador, producto) => {
+            return acumulador + producto.precio;
+        }, 0);
+    }
+
+    return total;
+}
+//FUNCION PARA ACTUALIZAR EL TOTAL DESPUES DE ELIMINAR UN ITEM
+function actualizarTotalCarrito(total) {
+    const divTotal = document.querySelector(".total_cart");
+    divTotal.className = 'total_cart'
+    divTotal.textContent = `Total: $${total}`;
+}
 function mostrarProcductosCarrito(){
     const produCarrito = document.querySelector(".contenedor-carrito");
-    produCarrito.innerHTML = "Carrito Vacio";
+    const titulo_cart = document.querySelector(".titulo_cart");
     const productosEnCarritoLS = JSON.parse(localStorage.getItem("carrito"));
-    console.log(productosEnCarritoLS)
-        
+    titulo_cart.textContent = "TU CARRITO";
+    produCarrito.innerHTML = '';
+    if(productosEnCarritoLS && productosEnCarritoLS.length > 0){
         productosEnCarritoLS.forEach((producto) =>{
             const div = document.createElement("div");
+            div.className = 'grilla_productos_cart'
             div.innerHTML = `
-            <article  id=${producto.id} class="box">
+            <article  id=${producto.id} class="box_cart">
             <img src=${producto.imagen} alt="imagen sobre ${producto.titulo}">
             </article>
             <div class="descripcion_producto">
                 <h2>${producto.titulo}</h2>
                 <p><i>$${producto.precio}</i></p>
             </div>
+            <div class="btn">
+            <button class="eliminar_producto" data-id=${producto.id} onclick = "eliminarProducto(${producto.id})"> <span>Eliminar</span> </button>
+            </div>
+            
             `;
-            produCarrito.append(div);
-        })
+            produCarrito.append(div);  
+        });
+
+        const totalCarrito = calcularTotalCarrito();
+        actualizarTotalCarrito(totalCarrito);
+        
+    }else{
+        titulo_cart.textContent = "CARRITO VACIO";
+    }
 }
+
 mostrarProcductosCarrito()
 
 
-const imagen = document.querySelector('.imagen');
-const texto = document.querySelector(".texto");
-function irATienda(imagen) {
-    // Añade un texto de "Ir a la tienda" al elemento cuando el puntero del mouse entra en él
-    imagen.addEventListener("mouseenter", function() {
-    texto.textContent = "Ir a la tienda";
-    });
-  
-    // Redirige a la página de la tienda cuando se hace clic en el elemento
-    imagen.addEventListener("click", function() {
-      window.location.href = "../pages/productos.html";
-    });
-  }
+
+
+
+
+
 
 
 
