@@ -105,13 +105,8 @@ btnEmail.addEventListener("submit", function(e) {
 e.preventDefault();
     const email = document.getElementById("emailInput").value;
     const emailValido = validarEmail(email);
-
-    if (!emailValido) {
-        emailInvalido();
-    } else {
-       localStorage.setItem("user_email", email);
-        enviado('Email enviado exitosamente!');
-    } 
+    
+    !emailValido ? emailInvalido() : (localStorage.setItem("user_email", email), enviado('Email enviado exitosamente!'));
     btnEmail.reset();
     });
     
@@ -256,32 +251,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
-
-// const catalogo = document.getElementById('box_productos');
-
-// fetch('../js/productos.json')
-//     .then(res=> res.json())
-//     .then(data =>{
-//         data.forEach(producto =>{
-//            const div = document.createElement('div');
-//            div.className = "producto"
-//             //SE CREA UN DIV CON LOS ELEMNTOS DEL PRODCUTO A MOSTRAR
-//             let img = document.createElement("img");
-//             img.src = producto.imagen;
-//             div.appendChild(img) 
-//             let titulo =  document.createElement("h2")     
-//             titulo.textContent = producto.titulo;    
-//             div.appendChild(titulo);
-//             let btns_agregar = document.createElement("button")
-//             btns_agregar.className = "btn_agragar";
-//             btns_agregar.textContent = "Agregar";
-//             div.appendChild(btns_agregar);
-
-//             catalogo.appendChild(div);
-
-//         })
-//     })
 
 //NUESTROS PRODUCTOS
 let btns_agregar = document.querySelectorAll('.agregar_producto');
